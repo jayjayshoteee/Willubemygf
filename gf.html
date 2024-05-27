@@ -30,7 +30,7 @@
         }
         .buttons {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             margin-top: 20px;
             position: relative;
         }
@@ -43,13 +43,12 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
-            margin: 0 10px;
         }
         button:hover {
             background-color: #ff1493;
         }
         .no-button {
-            position: absolute;
+            position: relative;
         }
         .hidden {
             display: none;
@@ -58,7 +57,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Will You Be My Girlfriend?</h1>
+        <h1 id="question">Will You Be My Girlfriend?</h1>
         <div class="buttons">
             <button onclick="showGif()">Yes</button>
             <button class="no-button" onmouseover="moveButton()">No</button>
@@ -69,6 +68,18 @@
     </div>
 
     <script>
+        const prompts = [
+            "Are you sure?",
+            "Are you really sure?",
+            "Have a heart!",
+            "This is only part one so please say yes",
+            "If you don’t, I’ll cry",
+            "I’ll cook for you if you say yes",
+            "I’ll buy you eggs if you say yes",
+            "Pleaseeee I love you"
+        ];
+        let promptIndex = 0;
+
         function moveButton() {
             const noButton = document.querySelector('.no-button');
             const container = document.querySelector('.container');
@@ -83,6 +94,11 @@
 
             noButton.style.left = `${newLeft}px`;
             noButton.style.top = `${newTop}px`;
+
+            // Change the question text with each hover
+            const questionText = document.getElementById('question');
+            questionText.innerText = prompts[promptIndex];
+            promptIndex = (promptIndex + 1) % prompts.length;
         }
 
         function showGif() {
@@ -90,4 +106,6 @@
         }
     </script>
 </body>
+</html>
+
 </html>
