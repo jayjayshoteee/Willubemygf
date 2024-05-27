@@ -29,8 +29,11 @@
             justify-content: center;
             margin-top: 20px;
         }
-        .gallery img {
+        .gallery-item {
             margin: 10px;
+            text-align: center;
+        }
+        .gallery img {
             border-radius: 15px;
             width: 200px;
             height: 200px;
@@ -80,16 +83,26 @@
             for (const file of files) {
                 const reader = new FileReader();
                 reader.onload = function(event) {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.classList.add('gallery-item');
+
                     const img = document.createElement('img');
                     img.src = event.target.result;
-                    gallery.appendChild(img);
+
+                    const caption = document.createElement('input');
+                    caption.type = 'text';
+                    caption.placeholder = 'Add a caption...';
+
+                    galleryItem.appendChild(img);
+                    galleryItem.appendChild(caption);
+                    gallery.appendChild(galleryItem);
                 }
                 reader.readAsDataURL(file);
             }
         }
     </script>
 </body>
-</html>
+</html
 
 
 
